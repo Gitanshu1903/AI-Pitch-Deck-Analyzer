@@ -4,7 +4,8 @@ This project provides an AI-powered tool to automatically analyze startup pitch 
 
 The application is built with Python, Flask, and the Google Generative AI SDK.
 
-![Screenshot Placeholder](placeholder.png) <!-- Replace placeholder.png with an actual screenshot -->
+https://github.com/user-attachments/assets/a0c7fe82-ee0c-4dd9-bb3a-ab30bca137e2
+
 
 ## Features
 
@@ -17,25 +18,6 @@ The application is built with Python, Flask, and the Google Generative AI SDK.
 *   **Qualitative Feedback:** Generates actionable strengths, weaknesses, and suggestions based on the section analysis.
 *   **Web Interface:** Presents the analysis results clearly in a web browser.
 *   **Modular Codebase:** Organized using OOP (PitchAnalyzer class) and Flask Blueprints for better maintainability.
-
-## Project Structure
-
-pitch_analyzer_flask/
-├── run.py # Main Flask app runner
-├── config.py # Central configuration
-├── analyzer/ # Package for analysis logic
-│ ├── init.py
-│ └── core.py # PitchAnalyzer class
-├── routes/ # Package for Flask routes
-│ ├── init.py
-│ └── main.py # Flask routes definitions
-├── requirements.txt # Project dependencies
-├── .env.example # Example environment variables (DO NOT COMMIT .env)
-├── uploads/ # Temporary PDF uploads (Gitignored)
-├── templates/ # HTML templates
-│ ├── index.html
-│ └── results.html
-└── README.md # This file
 
 ## Setup and Installation
 
