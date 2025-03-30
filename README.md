@@ -21,7 +21,7 @@ The application is built with Python, Flask, and the Google Generative AI SDK.
 ## Project Structure
 
 /pitch_analyzer_flask/
-├── run.py # Main Flask app runner
+├── run.py # Main Flask app runner \n
 ├── config.py # Central configuration
 ├── analyzer/ # Package for analysis logic
 │ ├── init.py
