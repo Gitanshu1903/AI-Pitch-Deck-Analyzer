@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Pitch Analysis Results</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 800px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1, h2 { color: #333; border-bottom: 1px solid #eee; padding-bottom: 10px;}
+        h1 { text-align: center; }
+        .score-summary { text-align: center; font-size: 1.5em; margin-bottom: 30px; }
+        .score-value { font-weight: bold; font-size: 1.8em; color: #007bff; }
+        .section { margin-bottom: 25px; padding-bottom: 15px; border-bottom: 1px dashed #eee; }
+        .section:last-child { border-bottom: none; }
+        .section h3 { margin-top: 0; color: #0056b3; }
+        .section-score { font-weight: bold; }
+        .section-justification { font-style: italic; color: #555; margin-left: 15px; }
+        .feedback-list { list-style: none; padding-left: 0; }
+        .feedback-list li { margin-bottom: 10px; line-height: 1.4; }
+        .feedback-list .strength::before { content: '+ '; color: green; font-weight: bold; }
+        .feedback-list .weakness::before { content: '- '; color: red; font-weight: bold; }
+        .error-message { color: #721c24; background-color: #f8d7da; border: 1px solid #f5c6cb; padding: 15px; border-radius: 4px; text-align: center; font-weight: bold;}
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analysis Results</h1>
+
+        {% if error %}
+            <div class="error-message">
+                Analysis Failed: {{ error }}
+            </div>
+        {% else %}
+            <div class="score-summary">
+                Overall Pitch Score: <span class="score-value">{{ results.overall_score }}/100</span>
+                <br><small>(Based on weighted analysis of core sections)</small>
+            </div>
+
+            <h2>Section Scores & Justifications</h2>
+            {% if results.section_scores %}
+                {% for section in target_sections %} {# Iterate through target sections in order #}
+                    <div class="section">
+                        {% if section in results.section_scores %}
+                            {% set data = results.section_scores[section] %}
+                            {% set score = data.get('score', 'N/A') %}
+                            {% set justification = data.get('justification', 'N/A') %}
+                            {% set weight = section_weights.get(section, 0) %}
+                             <h3>{{ section }} <span class="section-score">({{ score }}/100)</span> <small>(Weight: {{ weight }})</small></h3>
+                            <p class="section-justification">{{ justification }}</p>
+                        {% else %}
+                            <h3>{{ section }} <small>(Weight: {{ section_weights.get(section, 0) }})</small></h3>
+                            <p class="section-justification"><i>Section not found or could not be scored.</i></p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>No section scores were generated.</p>
+            {% endif %}
+
+            <h2>Feedback</h2>
+            {% set feedback = results.get('feedback', {}) %}
+            {% set strengths = feedback.get('strengths') %}
+            {% set weaknesses = feedback.get('weaknesses') %}
+
+            <h3>Strengths:</h3>
+            {% if strengths %}
+                <ul class="feedback-list">
+                    {% for s in strengths %}
+                        <li class="strength">{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No specific strengths identified.</p>
+            {% endif %}
+
+            <h3>Weaknesses & Suggestions:</h3>
+             {% if weaknesses %}
+                <ul class="feedback-list">
+                    {% for w in weaknesses %}
+                        <li class="weakness">{{ w }}</li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>No specific weaknesses identified.</p>
+            {% endif %}
+
+        {% endif %}
+
+         <p style="text-align: center; margin-top: 30px;">
+            <a href="/">Analyze Another Deck</a>
+        </p>
+
+    </div>
+</body>
+</html>

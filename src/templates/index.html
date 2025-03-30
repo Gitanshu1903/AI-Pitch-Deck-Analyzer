@@ -1,1 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>AI Pitch Deck Analyzer</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; background-color: #f4f4f4; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input[type="file"] { display: block; width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; }
+        button { display: block; width: 100%; padding: 12px; background-color: #007bff; color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; transition: background-color 0.3s ease; }
+        button:hover { background-color: #0056b3; }
+        .loading { display: none; text-align: center; margin-top: 20px; font-weight: bold; color: #555; }
+        .flash-message { padding: 15px; margin-bottom: 20px; border: 1px solid transparent; border-radius: 4px; }
+        .flash-error { color: #721c24; background-color: #f8d7da; border-color: #f5c6cb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Pitch Deck PDF</h1>
 
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="post" action="/analyze" enctype="multipart/form-data" id="upload-form">
+            <div class="form-group">
+                <label for="pdf_file">Select PDF file:</label>
+                <input type="file" id="pdf_file" name="pdf_file" accept=".pdf" required>
+            </div>
+            <button type="submit" id="submit-button">Analyze Pitch</button>
+        </form>
+        <div class="loading" id="loading-indicator">
+            <p>Analyzing... This may take several minutes, especially for image-based PDFs due to OCR and API calls.</p>
+            <img src="https://i.gifer.com/ZZ5H.gif" alt="Loading..." width="50"> <!-- Simple loading gif -->
+        </div>
+    </div>
+
+    <script>
+        // Simple loading indicator
+        const form = document.getElementById('upload-form');
+        const loadingIndicator = document.getElementById('loading-indicator');
+        const submitButton = document.getElementById('submit-button');
+
+        form.addEventListener('submit', function() {
+            // Basic validation: Check if a file is selected
+            const fileInput = document.getElementById('pdf_file');
+            if (fileInput.files.length > 0) {
+                submitButton.disabled = true;
+                submitButton.textContent = 'Analyzing...';
+                loadingIndicator.style.display = 'block';
+            } else {
+                 // Prevent submission if no file (though 'required' attribute helps)
+                 alert("Please select a PDF file to analyze.");
+                 event.preventDefault(); // Stop form submission
+            }
+        });
+    </script>
+</body>
+</html>
