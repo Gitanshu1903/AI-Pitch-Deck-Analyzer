@@ -37,8 +37,8 @@ https://github.com/user-attachments/assets/a0c7fe82-ee0c-4dd9-bb3a-ab30bca137e2
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/your-username/ai-pitch-analyzer.git # Replace with your repo URL
-    cd ai-pitch-analyzer
+    git clone https://github.com/Gitanshu1903/AI-Pitch-Deck-Analyzer.git
+    cd AI-Pitch-Deck-Analyzer
     ```
 
 2.  **Create a Virtual Environment (Recommended):**
@@ -103,17 +103,3 @@ The `config.py` file contains key parameters:
 *   **Accuracy:** LLM analysis provides valuable insights but isn't infallible. OCR errors can occur, and LLM interpretations have inherent subjectivity. Use results as a guide, not a definitive judgment.
 *   **Poppler Path (Windows):** If `pdf2image` can't find Poppler on Windows, you might need to explicitly set the `POPPLER_PATH_WINDOWS` variable in `config.py` to the location of your Poppler `bin` directory.
 
-
----
-
-**Remember to:**
-
-1.  **Replace Placeholders:** Update the repository URL and add an actual screenshot (`placeholder.png`).
-2.  **Add a `LICENSE` file:** If you choose a license like MIT, create a `LICENSE` file in the root directory containing the license text.
-3.  **Create `.env.example`:** Create a file named `.env.example` mirroring `.env` but with placeholder values, like:
-    ```
-    GOOGLE_API_KEY=YOUR_GOOGLE_API_KEY_HERE
-    FLASK_SECRET_KEY=YOUR_FLASK_SECRET_KEY_HERE
-    ```
-4.  **Add `.env` to `.gitignore`:** Make sure your actual `.env` file (with secrets) is listed in your `.gitignore` file so you don't accidentally commit it. Also, add `uploads/` and `venv/` (or your virtual environment folder name) to `.gitignore`.
-Use code with caution.
