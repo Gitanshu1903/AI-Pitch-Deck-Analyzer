@@ -24,11 +24,7 @@ https://github.com/user-attachments/assets/a0c7fe82-ee0c-4dd9-bb3a-ab30bca137e2
 **Prerequisites:**
 
 1.  **Python:** Version 3.9 or higher recommended.
-2.  **Poppler:** Required by `pdf2image` for PDF processing. Installation varies by OS:
-    *   **macOS:** `brew install poppler`
-    *   **Linux (Debian/Ubuntu):** `sudo apt update && sudo apt install poppler-utils`
-    *   **Linux (Fedora):** `sudo dnf install poppler-utils`
-    *   **Windows:** Download binaries (e.g., from [this StackOverflow thread's links](https://stackoverflow.com/questions/18381713/how-to-install-poppler-on-windows)) and add the `bin` directory to your system's PATH. Alternatively, set the `POPPLER_PATH_WINDOWS` variable in `config.py` if needed.
+2.  **Poppler:** Required by `pdf2image` for PDF processing.
 3.  **Google Cloud Project & API Key:**
     *   You need a Google Cloud project with the "Generative Language API" (also known as Gemini API) enabled.
     *   Create an API Key from the Google Cloud Console or Google AI Studio. See [Google AI Setup Guide](https://ai.google.dev/gemini-api/docs/setup).
